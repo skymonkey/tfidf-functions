@@ -15,7 +15,7 @@ normaliseTfIdfDataFrames <- function(x, y){
    #   will have a default weight of 1e-10.
    missing.terms <- colnames(x[,which(!colnames(x) %in% colnames(y))])
    weight <- 1e-10
-   missing.term.matrix <- matrix(weight, nrow = nrow(y), ncol = length(terms))
+   missing.term.matrix <- matrix(weight, nrow = nrow(y), ncol = length(missing.terms))
    colnames(missing.term.matrix) <- missing.terms
    rownames(missing.term.matrix) <- rownames(y)
    normalised <- as.DocumentTermMatrix(cbind(y[, which(colnames(y) %in% colnames(x))], missing.term.matrix), weighting=weightTfIdf)
