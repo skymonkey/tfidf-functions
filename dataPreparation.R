@@ -13,3 +13,25 @@ ExtractJobsInEN <- function(x){
   return(x[which(x$lang == 'english'),])
 
 }
+
+ReplaceUnicodeEscapesWithSpaces <- function(x){
+  # Matches escaped unicode sequences and replaces them
+  # with a single space. 
+  #
+  #  Args:
+  #   x: character vector.
+  #  
+  #  Returns:
+  #   The same character vector, but with all escaped unicode
+  #   character sequences replaced by single space. 
+  #
+  return(gsub("\\\\u[\\d\\w]{4}"," ", x, ignore.case=T))
+}
+
+
+SplitWordsByCapitalLetter <- function(x){
+
+
+
+
+}
