@@ -33,7 +33,7 @@ SplitWordsByCapitalLetter <- function(x){
    # Naive heuristic that assumes tokens with 
    # mixed casing can be decomposed into two or more words
    
-
+   return(gsub("([a-z]+)([A-Z])", "\\1 \\2", x))
 
 
 }
