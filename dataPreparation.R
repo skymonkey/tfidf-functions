@@ -30,7 +30,9 @@ ReplaceUnicodeEscapesWithSpaces <- function(x){
 
 
 SplitWordsByCapitalLetter <- function(x){
-
+   # Naive heuristic that assumes tokens with 
+   # mixed casing can be decomposed into two or more words
+   
 
 
 
