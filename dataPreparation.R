@@ -102,7 +102,14 @@ SplitDataFrameByFactor <- function(x, col.index){
 
 SplitWordsByCapitalLetter <- function(x){
    # Naive heuristic that assumes tokens with 
-   # mixed casing can be decomposed into two or more words
+   # mixed casing can be decomposed into two or more words.
+   # 
+   # Args:
+   #  x: Column vector containing the data to be cleaned.
+   #
+   # Returns:
+   #  The same column vector but with all Unicode escape sequences
+   #  replaced by spaces.
    
    return(gsub("([a-z]+)([A-Z])", "\\1 \\2", x))
 
@@ -110,15 +117,36 @@ SplitWordsByCapitalLetter <- function(x){
 }
 
 
-CleanDatasetAndGenerateFeatures <- function(x,col.index){
+CleanDatasetAndGenerateFeatures <- function(x){
   # Applies some simple data cleaning and generates  
-  # the feature vectors. 
+  # the feature vectors (tf-idf). 
   # 
-  
- 
+  # Args:
+  #   x: Column vector containing the training data.
+  #
+  # Returns:
+  #   Data frame containing the features for training (tf-idf).
+   
   x<- ReplaceUnicodeEscapesWithSpaces(x)
   return(CalculateTfIdf(x))
 
 
+
+}
+
+GetSummaryStatisticsForTargetDataColumn <- function(x){
+   # Calculates some descriptive statistics for the 
+   # target data column in the set (specific helper function for this task).
+   # Outputs stats to console for demo purposes.
+   #
+   # Args:
+   #   x: The predictor column for the task.
+   #
+   corpus.size <- length(x)
+   nclasses <- nlevels(as.factor(x))
+   no.class.label <- sum(is.na(x))
+   message("Size of corpus is: ", corpus.size)
+   message("Num of target classes: ", nclasses)
+   message("Num of instances with no class label: ", no.class.label)
 
 }
